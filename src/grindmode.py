@@ -29,4 +29,4 @@ while True:
         deal_with_new_thread_id(thread_id)
 
     print("sleeping...")
-    time.sleep(30)
+    time.sleep(10)

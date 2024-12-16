@@ -35,7 +35,7 @@ service.users().messages().send(
     body=create_message(
         FROM,
         TO,
-        "Inbox is full",
+        "GOOD ONE",
         """Thanks for your email. I'm too busy grinding.<br><br>
         <audio controls><p>
         <a href="https://gregsadetsky.github.io/grindset-mode/full.mp3">(click here)</a>
