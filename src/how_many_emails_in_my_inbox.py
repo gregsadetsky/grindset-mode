@@ -21,6 +21,14 @@ def get_messages_from_inbox(service):
     return messages
 
 
+def get_all_unique_thread_ids_from_inbox(service):
+    inbox_messages = get_messages_from_inbox(service)
+    all_thread_ids = set()
+    for msg in inbox_messages:
+        all_thread_ids.add(msg["threadId"])
+    return all_thread_ids
+
+
 if __name__ == "__main__":
     service = gmail_authenticate()
     inbox_messages = get_messages_from_inbox(service)
