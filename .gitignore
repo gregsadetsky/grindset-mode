@@ -3,3 +3,4 @@ __pycache__
 credentials.json
 token.pickle
 .DS_Store
+.env

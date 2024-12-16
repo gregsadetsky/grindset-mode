@@ -1,10 +1,10 @@
 import base64
 from email.mime.text import MIMEText
 
-from common import gmail_authenticate
+from common import gmail_authenticate, OUR_EMAIL, REPLY_EMAIL
 
-FROM = "lepetitg@gmail.com"
-TO = "gs@gregsadetsky.com"
+FROM = OUR_EMAIL
+TO = REPLY_EMAIL
 
 
 # https://stackoverflow.com/a/41403459

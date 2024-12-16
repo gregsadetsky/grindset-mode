@@ -2,9 +2,9 @@ import base64
 from email.message import EmailMessage
 from email.mime.text import MIMEText
 
-from common import gmail_authenticate
+from common import gmail_authenticate, OUR_EMAIL
 
-FROM = "lepetitg@gmail.com"
+FROM = OUR_EMAIL
 MESSAGE_THREAD_TO_REPLY_TO = "193c738897460d9c"
 
 
