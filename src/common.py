@@ -1,15 +1,21 @@
 import os
 import pickle
 
+from dotenv import load_dotenv
+
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 
 # Gmail API utils
 from googleapiclient.discovery import build
 
+load_dotenv()
+
 # Request all access (permission to read/send/receive emails, manage the inbox, and more)
 SCOPES = ["https://mail.google.com/"]
-our_email = "lepetitg@gmail.com"
+OUR_EMAIL = os.environ["USER_EMAIL"]
+REPLY_EMAIL = os.environ["REPLY_EMAIL"]
+print(OUR_EMAIL)
 
 
 def gmail_authenticate():

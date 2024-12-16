@@ -10,7 +10,7 @@ from email.mime.audio import MIMEAudio
 from email.mime.base import MIMEBase
 from mimetypes import guess_type as guess_mime_type
 
-from common import our_email, gmail_authenticate
+from common import OUR_EMAIL, gmail_authenticate
 
 # Adds the attachment with the given filename to the given message
 def add_attachment(message, filename):
@@ -43,12 +43,12 @@ def build_message(destination, obj, body, attachments=[]):
     if not attachments: # no attachments given
         message = MIMEText(body)
         message['to'] = destination
-        message['from'] = our_email
+        message['from'] = OUR_EMAIL
         message['subject'] = obj
     else:
         message = MIMEMultipart()
         message['to'] = destination
-        message['from'] = our_email
+        message['from'] = OUR_EMAIL
         message['subject'] = obj
         message.attach(MIMEText(body))
         for filename in attachments:
