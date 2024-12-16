@@ -1,7 +1,7 @@
 import base64
 from email.mime.text import MIMEText
 
-from common import gmail_authenticate, OUR_EMAIL, REPLY_EMAIL
+from common import OUR_EMAIL, REPLY_EMAIL, gmail_authenticate
 
 FROM = OUR_EMAIL
 TO = REPLY_EMAIL
