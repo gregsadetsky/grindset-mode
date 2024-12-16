@@ -36,6 +36,12 @@ service.users().messages().send(
         FROM,
         TO,
         "Inbox is full",
-        "Hey, your inbox is full. Please <b>delete</b> some emails.",
+        """Thanks for your email. I'm too busy grinding.<br><br>
+        <audio controls><p>
+        <a href="https://gregsadetsky.github.io/grindset-mode/full.mp3">(click here)</a>
+        </p>
+        <source src="https://gregsadetsky.github.io/grindset-mode/full.mp3"></source>
+        </audio>
+        <br><br>thanks xx""",
     ),
 ).execute()
