@@ -1,7 +1,9 @@
 import os
 import sys
+
 # for encoding/decoding messages in base64
 from base64 import urlsafe_b64decode
+
 from common import gmail_authenticate, search_messages
 
 
@@ -61,12 +63,26 @@ def parse_parts(service, parts, folder_name, message):
                     part_header_value = part_header.get("value")
                     if part_header_name == "Content-Disposition":
                         if "attachment" in part_header_value:
-                            # we get the attachment ID 
+                            # we get the attachment ID
                             # and make another request to get the attachment itself
-                            print("Saving the file:", filename, "size:", get_size_format(file_size))
+                            print(
+                                "Saving the file:",
+                                filename,
+                                "size:",
+                                get_size_format(file_size),
+                            )
                             attachment_id = body.get("attachmentId")
-                            attachment = service.users().messages() \
-                                        .attachments().get(id=attachment_id, userId='me', messageId=message['id']).execute()
+                            attachment = (
+                                service.users()
+                                .messages()
+                                .attachments()
+                                .get(
+                                    id=attachment_id,
+                                    userId="me",
+                                    messageId=message["id"],
+                                )
+                                .execute()
+                            )
                             data = attachment.get("data")
                             filepath = os.path.join(folder_name, filename)
                             if data:
@@ -83,19 +99,25 @@ def read_message(service, message):
         - Downloads text/html content (if available) and saves it under the folder created as index.html
         - Downloads any file that is attached to the email and saves it in the folder created
     """
-    msg = service.users().messages().get(userId='me', id=message['id'], format='full').execute()
+    msg = (
+        service.users()
+        .messages()
+        .get(userId="me", id=message["id"], format="full")
+        .execute()
+    )
     # parts can be the message body, or attachments
-    payload = msg['payload']
+    payload = msg["payload"]
     headers = payload.get("headers")
     parts = payload.get("parts")
     folder_name = "email"
     has_subject = False
+    print("ID", message["id"])
     if headers:
         # this section prints email basic info & creates a folder for the email
         for header in headers:
             name = header.get("name")
             value = header.get("value")
-            if name.lower() == 'from':
+            if name.lower() == "from":
                 # we print the From address
                 print("From:", value)
             if name.lower() == "to":
@@ -128,7 +150,8 @@ def read_message(service, message):
         if not os.path.isdir(folder_name):
             os.mkdir(folder_name)
     parse_parts(service, parts, folder_name, message)
-    print("="*50)
+    print("=" * 50)
+
 
 if __name__ == "__main__":
     service = gmail_authenticate()
